@@ -1,6 +1,7 @@
 #include "Lib/Multiboot.h"
 #include "Dev/Video/VGA.h"
 #include "Cpu/Tables/GDT.h"
+#include "Lib/Printf.h"
 
 using namespace Kernel;
 
@@ -16,5 +17,6 @@ extern "C" void _main(struct multiboot_info_t *mboot_info, uint32_t mboot_magic)
 {
     vga_clear();
     vga_enable_cursor();
+    printf("\n  \033[95mWelcome to \033[92mMachina\033[97m!\033[0m\n\n");
     GDT::gdt_install();
 }

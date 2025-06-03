@@ -1,5 +1,5 @@
 #include "GDT.h"
-#include "../../Dev/Video/VGA.h"
+#include "../../Lib/Printf.h"
 
 using namespace Kernel;
 
@@ -17,7 +17,7 @@ void GDT::gdt_install() {
     };
 
     gdt_flush();
-    vga_puts(" \033[92m[OK]\033[97m Initialized GDT\033[0m\n");
+    printf(" \033[92m[OK]\033[97m Initialized GDT at address 0x%x\033[0m\n", (uint32_t)&gdt_descriptor);
 }
 
 void GDT::setEntry(uint8_t index, uint16_t limit, uint32_t base, uint8_t access, uint8_t gran) {
