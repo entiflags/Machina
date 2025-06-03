@@ -40,7 +40,7 @@ bin/Kernel/%.asm.o: Kernel/%.asm
 
 Kernel: $(KERNEL_OBJS)
 	@echo " LD Kernel/*"
-	@echo "Linking objects: $(KERNEL_OBJS)"
+#	@echo "Linking objects: $(KERNEL_OBJS)"
 	@$(LD) $(LDFLAGS) $^ -o bin/Kernel.elf
 
 iso:
