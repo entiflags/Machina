@@ -4,17 +4,17 @@ CC = clang++
 LD = ld
 
 # Automatically find sources
-KERNEL_AS_SOURCES = $(wildcard Kernel/*.asm)
-KERNEL_CC_SOURCES = $(wildcard Kernel/*.cc)
+KERNEL_AS_SOURCES = $(shell find Kernel -name '*.asm')
+KERNEL_CC_SOURCES = $(shell find Kernel -name '*.cc')
 
 # Get object files
 KERNEL_OBJS := $(patsubst Kernel/%.asm,bin/Kernel/%.asm.o,$(KERNEL_AS_SOURCES)) \
-               $(patsubst Kernel/%.cc,bin/Kernel/%.cc.o,$(KERNEL_CC_SOURCES))
+               $(patsubst %.cc,bin/%.cc.o,$(KERNEL_CC_SOURCES))
 
 # Flags
 ASFLAGS = -f elf32 -g -F dwarf
 CCFLAGS = -m32 -std=c++17 -ffreestanding -O0 -Wall -Wextra -nostdlib -I kernel -fno-stack-protector -Wno-unused-parameter -fno-stack-check -fno-lto -mno-mmx -mno-80387 -mno-sse -mno-sse2 -mno-red-zone
-QEMUFLAGS = -M q35 -m 256M -cdrom bin/$(IMAGE_NAME).iso -rtc base=localtime -boot d
+QEMUFLAGS = -debugcon stdio -M q35 -m 256M -cdrom bin/$(IMAGE_NAME).iso -rtc base=localtime -boot d
 LDFLAGS = -m elf_i386 -TKernel/linker.ld -z noexecstack
 
 # Output image name
@@ -40,6 +40,7 @@ bin/Kernel/%.asm.o: Kernel/%.asm
 
 Kernel: $(KERNEL_OBJS)
 	@echo " LD Kernel/*"
+	@echo "Linking objects: $(KERNEL_OBJS)"
 	@$(LD) $(LDFLAGS) $^ -o bin/Kernel.elf
 
 iso:
