@@ -1,2 +1,2 @@
 # Machina
-An OS written in... assembly? Well, yeah
+Try, to write an operating system from scratch
