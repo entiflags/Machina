@@ -1,6 +1,7 @@
 #include "Lib/Multiboot.h"
 #include "Dev/Video/VGA.h"
 #include "Dev/PIC.h"
+#include "Dev/PIT.h"
 #include "Cpu/Tables/GDT.h"
 #include "Cpu/Tables/IDT.h"
 #include "Lib/Printf.h"
@@ -23,4 +24,5 @@ extern "C" void _main(struct multiboot_info_t *mboot_info, uint32_t mboot_magic)
     GDT::gdt_install();
     idt_install();
     PIC::pic_install();
+    PIT::pit_install();
 }
