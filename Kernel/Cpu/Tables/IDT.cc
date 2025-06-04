@@ -78,12 +78,12 @@ extern "C" void isr_handler(struct registers* regs) {
         return;
     }
 
-    printf("%s:%d: %s\n", __FILE__, __LINE__, isr_errors[regs->int_no]);
+    dprintf("%s:%d: %s\n", __FILE__, __LINE__, isr_errors[regs->int_no]);
 
     if (regs->int_no == 0x0e) {
         uint32_t cr2;
         asm volatile("mov %%cr2, %0" : "=r" (cr2));
-        printf("%s:%d: faulting address: 0x%x\n", __FILE__, __LINE__, cr2);
+        dprintf("%s:%d: faulting address: 0x%x\n", __FILE__, __LINE__, cr2);
     }
 
     asm volatile ("cli");

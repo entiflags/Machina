@@ -1,5 +1,6 @@
 #include "Lib/Multiboot.h"
 #include "Dev/Video/VGA.h"
+#include "Dev/PIC.h"
 #include "Cpu/Tables/GDT.h"
 #include "Cpu/Tables/IDT.h"
 #include "Lib/Printf.h"
@@ -21,4 +22,5 @@ extern "C" void _main(struct multiboot_info_t *mboot_info, uint32_t mboot_magic)
     printf("\n  \033[97mWelcome to \033[94mMachina\033[97m!\033[0m\n\n");
     GDT::gdt_install();
     idt_install();
+    PIC::pic_install();
 }

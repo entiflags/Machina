@@ -117,6 +117,7 @@ int dprintf(const char* fmt, ...) {
     char buf[1024] = {-1};
     int ret = sprintf(buf, fmt, args);
 
+    vga_puts(buf);
     serial_puts(buf);
 
     va_end(args);
