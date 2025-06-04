@@ -3,6 +3,7 @@
 #include <cstdint>
 #include "../Cpu/IO.h"
 #include "../Dev/Video/VGA.h"
+#include "../Dev/Char/Serial.h"
 #include "LibCpp.h"
 
 namespace Kernel {
@@ -105,6 +106,18 @@ int printf(const char* fmt, ...) {
     int ret = sprintf(buf, fmt, args);
 
     vga_puts(buf);
+
+    va_end(args);
+    return ret;
+}
+
+int dprintf(const char* fmt, ...) {
+    std::va_list args;
+    va_start(args, fmt);
+    char buf[1024] = {-1};
+    int ret = sprintf(buf, fmt, args);
+
+    serial_puts(buf);
 
     va_end(args);
     return ret;
