@@ -13,9 +13,9 @@ public:
 
     static size_t pit_ticks;
 
-    static void pit_install();
-    static void pit_reinstall();
-    static void pit_sleep(size_t ms);
+    static void install();
+    static void reinstall();
+    static void sleep(size_t ms);
 
 private:
     static void handler(struct registers* regs);

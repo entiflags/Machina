@@ -19,7 +19,7 @@ public:
         uint32_t offset;
     } __attribute__((packed));
 
-    static void gdt_install();
+    static void install();
     static void setEntry(uint8_t index, uint16_t limit, uint32_t base, uint8_t access, uint8_t gran);
 
 private:

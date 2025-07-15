@@ -6,7 +6,7 @@ using namespace Kernel;
 extern "C" void gdt_flush(void);
 GDT::Descriptor gdt_descriptor;
 
-void GDT::gdt_install() {
+void GDT::install() {
     setEntry(0, 0x0000, 0x00000000, 0b00000000, 0b00000000);
     setEntry(1, 0xFFFF, 0x00000000, 0b10011011, 0b11001111);
     setEntry(2, 0xFFFF, 0x00000000, 0b10010011, 0b11001111);

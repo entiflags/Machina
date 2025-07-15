@@ -4,7 +4,7 @@
 
 namespace Kernel {
 
-void PIC::pic_install() {
+void PIC::install() {
     outb(PIC1_CMD, ICW1_INIT | ICW1_ICW4);
     outb(PIC2_CMD, ICW1_INIT | ICW1_ICW4);
     outb(PIC1_DAT, 0x20);
@@ -19,7 +19,7 @@ void PIC::pic_install() {
     printf(" \033[92m[OK]\033[97m Initialized interrupts\033[0m\n");
 }
 
-void PIC::pic_disable() {
+void PIC::disable() {
     outb(PIC1_DAT, 0xFF);
     outb(PIC2_DAT, 0xFF);
     outb(PIC1_DAT, PIC_EOI);

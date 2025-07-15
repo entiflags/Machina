@@ -7,8 +7,8 @@ namespace Kernel {
 
 class PIC {
 public:
-    static void pic_install();
-    static void pic_disable();
+    static void install();
+    static void disable();
     static void sendEOI(uint8_t irq);
 
 private:
